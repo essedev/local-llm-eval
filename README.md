@@ -1,6 +1,6 @@
 # macbook-m5-agentic-coding-eval
 
-Esperimenti sul **coding agentico locale su MacBook Pro M5 32 GB**, con confronto contro modelli cloud via OpenRouter. Quattro round di test tra il 19/05 e il 26/05 2026 su un task scaffold ripetibile (`booktrack`: FastAPI + SQLite backend, React + Vite frontend, CRUD libri).
+Esperimenti sul **coding agentico locale su MacBook Pro M5 32 GB**, con confronto contro modelli cloud via OpenRouter. Quattro round di test storici (19/05 → 26/05 2026, archiviati) più un round 5 in corso con metodologia ripulita. Task standard: `booktrack` — FastAPI + SQLite backend, React + Vite frontend, CRUD libri con status.
 
 Setup, log turn-per-turn, codice generato, scoring manuale e dati di costo per ogni run sono nel repo.
 
@@ -23,17 +23,19 @@ Setup, log turn-per-turn, codice generato, scoring manuale e dati di costo per o
 
 ---
 
-## Come navigare il repo
+## Stato attuale del repo
+
+Il 2026-05-26 abbiamo deciso di rifare l'esperimento da zero con una metodologia ripulita (i 4 round precedenti avevano confronti monolithic vs roadmap sbilanciati e una serie di bug ricorrenti che il setup non vincolava). I materiali storici sono archiviati ma consultabili come baseline.
 
 | Da dove partire | Vai a |
 |---|---|
-| Cronologia completa dei 4 round | [`HISTORY.md`](./HISTORY.md) |
-| Risultati e scoring dettagliato locale | [`RESULTS-MANUAL-2026-05-25.md`](./RESULTS-MANUAL-2026-05-25.md) |
-| Risultati e scoring dettagliato cloud + costi | [`RESULTS-CLOUD-2026-05-25.md`](./RESULTS-CLOUD-2026-05-25.md) |
-| Metodologia del round 3 (roadmap-a-pezzi) | [`PLAN-2026-05-23-roadmap-vs-model-size.md`](./PLAN-2026-05-23-roadmap-vs-model-size.md) |
-| Note sulla transizione script→manuale del round 4 | [`FINDINGS-PRE-MANUAL-ANALYSIS-2026-05-25.md`](./FINDINGS-PRE-MANUAL-ANALYSIS-2026-05-25.md) |
-| Script orchestratori dei test | `run-*.sh` |
-| Codice generato + transcript Pi per ogni run | sandbox `*-booktrack-*-2026-MM-DD/` |
+| Piano operativo del round 5 (in corso) | [`docs/PLAN.md`](./docs/PLAN.md) |
+| Contratto del task booktrack (`--append-system-prompt` per ogni run) | [`docs/SPEC.md`](./docs/SPEC.md) |
+| Cronologia di tutti i round (1-4 archiviati, 5 in pianificazione) | [`HISTORY.md`](./HISTORY.md) |
+| Materiali archiviati (sandbox, scoring, script storici) | [`_archive/round-1-to-4-2026-05-19-to-25/`](./_archive/round-1-to-4-2026-05-19-to-25/) |
+| Indice archivio (cosa c'è dentro, perché è stato superato) | [`_archive/round-1-to-4-2026-05-19-to-25/INDEX.md`](./_archive/round-1-to-4-2026-05-19-to-25/INDEX.md) |
+| Scoring locale (round 3+4) | `_archive/.../docs-historical/RESULTS-MANUAL-2026-05-25.md` |
+| Scoring cloud (round 4, con caveat) | `_archive/.../docs-historical/RESULTS-CLOUD-2026-05-25.md` |
 
 ---
 
@@ -43,7 +45,7 @@ Setup, log turn-per-turn, codice generato, scoring manuale e dati di costo per o
 
 **Software**:
 - Apple MLX: `mlx_lm.server` 0.31.x (`pip install -U mlx-lm`)
-- Agent: `@mariozechner/pi-coding-agent` 0.75.3 (`pnpm install -g @mariozechner/pi-coding-agent`)
+- Agent: `@earendil-works/pi-coding-agent` 0.75.5 (`pnpm install -g @earendil-works/pi-coding-agent`) — versione attiva del namespace precedentemente `@mariozechner/`
 - OpenRouter API key in env: `export OPENROUTER_API_KEY=sk-or-...`
 
 **Modelli locali usati** (4-bit MLX, da LM Studio o HF):
@@ -72,11 +74,18 @@ Su Pi 0.75 va modificato `~/.pi/agent/models.json` rimuovendo `quantizations: ["
 
 ## Riproduzione di un singolo test
 
-```bash
-# Test locale qwen3.6-35B monolithic (target: 18/18 in ~7 min)
-~/Development/Projects/local-llm-eval/run-monolithic-2026-05-25.sh
+> Gli script `run-*.sh` del round 5 (`run-local-2026-05-26.sh`, `run-cloud-2026-05-26.sh`) saranno scritti dopo lo smoke test della nuova metodologia. Per ora sotto trovi il pattern Pi minimal con `--append-system-prompt @docs/SPEC.md` da usare per uno smoke test manuale.
 
-# Test cloud DeepSeek V4 Flash monolithic (target: 17/18 a $0.002)
+```bash
+# Smoke test locale (monolithic con SPEC iniettato)
+cd <sandbox-vuota>
+pi -p --provider mlx-local --model "<path-modello>" \
+   --no-skills --no-extensions --no-prompt-templates --no-context-files \
+   --append-system-prompt @../../docs/SPEC.md \
+   --mode json --session-dir sessions \
+   "Implementa l'app booktrack come descritta nello SPEC. Tutto in questa cartella. Procedi."
+
+# Test cloud DeepSeek V4 Flash monolithic (target storico: 17/18 a $0.002)
 mkdir -p test-deepseek && cd test-deepseek
 pi -p --provider openrouter --model "deepseek/deepseek-v4-flash" \
    --no-skills --no-extensions --no-prompt-templates --no-context-files \

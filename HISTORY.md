@@ -1,6 +1,8 @@
 # HISTORY - Cronologia degli esperimenti
 
-Documento cronologico di tutti i test agentic coding eseguiti su MacBook Pro M5 32 GB tra il 19/05 e il 26/05 2026. Per i risultati dettagliati e i punteggi vedi i `RESULTS-*.md`. Per il piano del round 2 vedi `PLAN-2026-05-23-roadmap-vs-model-size.md`.
+Documento cronologico di tutti i test agentic coding eseguiti su MacBook Pro M5 32 GB tra il 19/05 e il 26/05 2026.
+
+> **Nota path 2026-05-26**: i materiali dei round 1-4 sono stati archiviati in `_archive/round-1-to-4-2026-05-19-to-25/` dopo la decisione di rifare l'esperimento con una nuova metodologia (vedi `docs/PLAN.md` + indice archivio in `_archive/round-1-to-4-2026-05-19-to-25/INDEX.md`). Tutti i riferimenti sottostanti a `RESULTS-*.md`, `PLAN-2026-05-23-*.md`, sandbox di run, ecc. puntano a quella sotto-cartella di archivio.
 
 ---
 
