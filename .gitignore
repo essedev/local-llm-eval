@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.python-version
+*.egg-info/
+
+# Node
+node_modules/
+.pnpm-store/
+package-lock.json
+pnpm-lock.yaml
+.npm/
+.pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Databases generate dai test
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Logs e temporanei
+*.log
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# IDE
+.vscode/
+.idea/
+
+# Lock di uv
+uv.lock
+
+# Vite cache
+.vite/
+
+# Sessioni Pi (transcripts compressi, opzionale)
+# Decommenta se vuoi escluderle dal repo
+# sessions-*/
+# sessions-task-*/
+# sessions-mono/

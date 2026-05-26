@@ -1,0 +1,9 @@
+Sei nel directory corrente. Leggi PLAN.md.
+
+Esegui SOLO il Task 1 del piano (Inizializzazione Backend FastAPI). NON fare i task successivi.
+
+Usa i tool (bash, read, write, edit). Per lo scaffold del progetto Python usa il comando ufficiale: uv init backend --no-readme
+Poi entra nella cartella backend e installa con: uv add fastapi uvicorn
+NIENTE pyproject.toml o requirements.txt scritto a mano. Le versioni le risolve uv.
+
+Al termine fermati con una riga "Task 1 done" e nient altro.

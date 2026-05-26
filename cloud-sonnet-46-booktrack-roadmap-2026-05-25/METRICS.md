@@ -1,0 +1,11 @@
+task_1_exit=0
+task_2_exit=0
+task_3_exit=143
+task_4_exit=0
+task_5_exit=0
+task_6_exit=143
+model=anthropic/claude-sonnet-4.6
+mode=roadmap
+duration_seconds=123
+start_ts=1779741774
+end_ts=1779741897

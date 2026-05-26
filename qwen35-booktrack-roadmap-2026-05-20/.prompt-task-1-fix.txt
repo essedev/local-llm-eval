@@ -1,0 +1,8 @@
+Sei nel directory corrente. Lo scaffold del backend e gia fatto in ./backend/.
+
+Manca solo: riscrivere il file ./backend/main.py per creare un app FastAPI minima.
+Requisito esatto: l app FastAPI deve avere titolo "BookTrack API" (parametro title nel costruttore FastAPI).
+Verifica: deve poter eseguire `uv run python -c "from main import app; print(app.title)"` e stampare "BookTrack API".
+
+Usa il tool edit o write per riscrivere ./backend/main.py.
+Fermati con "done".

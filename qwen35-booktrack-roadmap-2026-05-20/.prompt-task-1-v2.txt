@@ -1,0 +1,14 @@
+Sei in /Users/doppia/Development/Projects/local-llm-eval/qwen35-booktrack-roadmap-2026-05-20.
+
+Il file ./backend/main.py NON ESISTE. Devi crearlo.
+
+Crea il file ./backend/main.py con un app FastAPI minima. Requisiti:
+- import FastAPI da fastapi
+- istanzia app = FastAPI(title="BookTrack API")
+- nessun endpoint per ora
+
+Usa write_file (NON edit, il file non esiste).
+Dopo aver scritto, verifica con bash: cd backend && uv run python -c "from main import app; print(app.title)"
+Deve stampare: BookTrack API
+
+Fermati con "done".
