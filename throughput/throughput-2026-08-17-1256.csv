@@ -1,0 +1,10 @@
+slug,architettura,gb_disco,run,gen_tok_s,gen_tokens,prompt_tok_s,peak_gb
+qwen38_27b,dense,15,1,7.958,400,66.954,15.595
+qwen38_27b,dense,15,2,8.053,400,80.045,15.595
+qwen38_27b,dense,15,3,8.112,400,140.405,15.595
+qwen36_35b_moe,moe-a3b,20,1,38.740,400,11.169,20.906
+qwen36_35b_moe,moe-a3b,20,2,40.697,400,38.794,20.906
+qwen36_35b_moe,moe-a3b,20,3,40.118,400,41.541,20.906
+qwen3_coder_30b_moe,moe-a3b,16,1,60.523,400,77.185,17.287
+qwen3_coder_30b_moe,moe-a3b,16,2,60.375,400,70.691,17.287
+qwen3_coder_30b_moe,moe-a3b,16,3,60.414,400,67.487,17.287
