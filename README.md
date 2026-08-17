@@ -1,8 +1,18 @@
 # macbook-m5-agentic-coding-eval
 
-Esperimenti sul **coding agentico locale su MacBook Pro M5 32 GB**, con confronto contro modelli cloud via OpenRouter. Quattro round di test storici (19/05 → 26/05 2026, archiviati) più un round 5 in corso con metodologia ripulita. Task standard: `booktrack` — FastAPI + SQLite backend, React + Vite frontend, CRUD libri con status.
+Esperimenti sul **coding agentico locale su MacBook Pro M5 32 GB**, con confronto contro modelli cloud via OpenRouter. Quattro round di test storici (19/05 → 26/05 2026, archiviati) più un round 5 in corso con metodologia ripulita. Task standard: `booktrack`, FastAPI + SQLite backend, React + Vite frontend, CRUD libri con status.
 
 Setup, log turn-per-turn, codice generato, scoring manuale e dati di costo per ogni run sono nel repo.
+
+**Il setup misurato qui è configurato da [llm-dash](https://github.com/essedev/llm-dash)**: profili modello, `mlx_lm.server`, gestione della memoria unificata.
+
+## Cosa misura, e cosa no
+
+I numeri di questo repo descrivono **una cosa sola**: quanto bene un modello genera un'app CRUD da ~150 righe, in un harness agentico minimale, a quantizzazione 4-bit. Dentro quel perimetro le misure sono ripetibili e i dati grezzi sono qui.
+
+Fuori da quel perimetro non abbiamo dati: refactor multi-file, long-context reasoning, debug su codebase esistenti, task lunghi. Sono esattamente i casi in cui ci aspetteremmo che la classifica cambi, e non li abbiamo testati.
+
+La maggior parte delle celle è N=1 (varianza misurata solo su 2 modelli), un solo task, un solo harness, un solo server di inferenza, un solo livello di quantizzazione. Vale come **punto di partenza qualitativo difendibile**, non come benchmark statistico. L'elenco completo dei limiti è in fondo.
 
 ---
 
@@ -103,9 +113,16 @@ pi -p --provider openrouter --model "deepseek/deepseek-v4-flash" \
 - **Un solo server di inferenza locale** (`mlx_lm.server` 0.31). LM Studio, Ollama, llama.cpp non testati come baseline alternative.
 - **Un solo livello di quantization** (4-bit). 6-bit, 8-bit, full-precision non testati.
 - **Un solo stile di prompt** (italiano). L'effetto della lingua del prompt sul codice generato è documentato come bug del round 3, non isolato sperimentalmente.
-- **Roadmap cloud parzialmente compromesso** da SIGTERM, da rilanciare.
+- **Roadmap cloud parzialmente compromesso** da SIGTERM (bug di orchestrazione nostro, non dei modelli), da rilanciare.
+- **Scoring soggettivo**: rubric 0-3 su 7 dimensioni, assegnata da subagent Claude con la stessa griglia. Nessuna ground truth, interrater agreement non misurato.
 
-Le conclusioni del repo valgono come **punto di partenza qualitativo difendibile**, non come benchmark statistico.
+Tre di questi limiti sono stati **causati da errori nostri** scoperti a posteriori: il confronto sbilanciato tra le due modalità nei round 1-4 (da cui il refit del round 5), il SIGTERM che ha ucciso 5 sandbox cloud a metà generazione, e uno script di verifica che grep-ava pattern multi-file e quindi bocciava i modelli che generavano single-file. Sono documentati in `HISTORY.md` invece che rimossi, perché cambiano come vanno letti i numeri di quei round.
+
+---
+
+## Peso del repo
+
+Il clone scarica circa **5 MB**: i transcript sono testo molto ripetitivo e comprimono al ~1%. Il checkout occupa però ~500 MB su disco, quasi tutto in `_archive/`. Per leggere solo il writeup basta la vista web di GitHub.
 
 ---
 

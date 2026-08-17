@@ -48,3 +48,13 @@ uv.lock
 # sessions-*/
 # sessions-task-*/
 # sessions-mono/
+
+# Artefatti di build dentro le sandbox generate dai modelli.
+# node_modules/ e .venv/ sopra li coprono gia', questi sono i residui
+# che i modelli producono avviando davvero backend e frontend.
+**/.pytest_cache/
+**/.ruff_cache/
+**/.mypy_cache/
+**/__pycache__/
+**/.vite/
+**/dist/
