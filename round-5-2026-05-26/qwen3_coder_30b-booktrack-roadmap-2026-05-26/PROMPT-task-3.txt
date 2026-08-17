@@ -1,0 +1,3 @@
+Task 3/6: endpoint CRUD + cross-origin.
+
+In backend/, implementa gli endpoint richiesti dallo SPEC (list, create, update status; delete e' opzionale). Configura la cross-origin verso il dev server frontend (porta 5173) come ritieni opportuno. Avvia uvicorn brevemente per verifica POST/GET/PATCH, poi killa il processo prima di terminare. PRIMA di scrivere, leggi i file esistenti per coerenza.

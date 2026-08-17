@@ -1,0 +1,3 @@
+Task 4/6: setup frontend React+Vite scaffold.
+
+Crea sottocartella frontend/ con pnpm create vite frontend --template react. Esegui pnpm install. Verifica che pnpm run build abbia exit 0. Niente UI custom in questo task: solo lo scaffold pulito di Vite. PRIMA di scrivere, leggi cosa c'e' gia' nella cartella corrente.

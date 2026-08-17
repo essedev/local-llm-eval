@@ -1,0 +1,3 @@
+Task 1/6: setup backend FastAPI scaffold.
+
+Crea sottocartella backend/ con uv init backend, aggiungi fastapi e uvicorn come dipendenze con uv add. L'app FastAPI deve essere importabile (from main import app). Niente endpoint reali in questo task. PRIMA di scrivere, leggi i file esistenti nella cartella corrente per coerenza. Stesso scope, stessa cartella di lavoro.

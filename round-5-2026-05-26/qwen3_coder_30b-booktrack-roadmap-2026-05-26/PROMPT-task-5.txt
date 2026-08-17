@@ -1,0 +1,3 @@
+Task 5/6: integrazione UI completa.
+
+In frontend/src/, sostituisci il template Vite con i componenti dell'app booktrack: client API verso il backend, BookList, BookForm, App che lega tutto. Lo status DEVE essere l'enum letterale dello SPEC (to-read, reading, done) identico al backend. Refresh immediato dopo create senza reload pagina. Stati di loading e error visibili. PRIMA di scrivere, leggi backend/ per assicurarti che gli enum coincidano e leggi i file frontend/ esistenti.

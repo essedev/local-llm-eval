@@ -1,0 +1,3 @@
+Task 6/6: verifica E2E + README.
+
+Avvia backend (uv run uvicorn main:app --port 8000) e frontend (pnpm run dev --port 5173) in background, esegui uno smoke test con curl sul backend (POST + GET) e verifica che il frontend risponda 200 su /, poi DEVI killare esplicitamente entrambi i processi che hai avviato (usa kill $BE_PID e kill $FE_PID, NON lasciare processi in background). Scrivi un README.md nella cartella corrente con istruzioni: prerequisiti, come avviare BE, come avviare FE, come fermare. PRIMA di iniziare, leggi backend/ e frontend/ per sapere come avviare ogni pezzo.

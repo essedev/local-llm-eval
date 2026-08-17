@@ -1,0 +1,3 @@
+Task 2/6: schema database + modelli.
+
+In backend/, definisci la tabella books (id, title, author, status) come specificato nello SPEC. Modelli Pydantic per request/response. Funzione init_db che crea il file SQLite e la tabella. Niente endpoint ancora. PRIMA di scrivere, leggi i file esistenti per coerenza con il task 1.

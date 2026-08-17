@@ -1,0 +1,1 @@
+Implementa l'app booktrack come descritta nello SPEC che ti e' stato fornito come system prompt addizionale. Tutto in questa cartella. Procedi.

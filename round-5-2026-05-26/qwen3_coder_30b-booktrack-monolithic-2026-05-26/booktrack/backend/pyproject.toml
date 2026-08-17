@@ -1,0 +1,16 @@
+[project]
+name = "booktrack-backend"
+version = "0.1.0"
+description = "Backend per BookTrack - una micro-app per tracciare i libri che leggo"
+authors = [{name = "BookTrack Developer"}]
+license = "MIT"
+readme = "README.md"
+python = ">=3.8"
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.dependencies]
+fastapi = "^0.115.0"
+uvicorn = "^0.32.0"
