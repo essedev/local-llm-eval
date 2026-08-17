@@ -41,7 +41,7 @@ Il 2026-05-26 abbiamo deciso di rifare l'esperimento da zero con una metodologia
 |---|---|
 | Piano operativo del round 5 (in corso) | [`docs/PLAN.md`](./docs/PLAN.md) |
 | Contratto del task booktrack (`--append-system-prompt` per ogni run) | [`docs/SPEC.md`](./docs/SPEC.md) |
-| Cronologia di tutti i round (1-4 archiviati, 5 in pianificazione) | [`HISTORY.md`](./HISTORY.md) |
+| Cronologia di tutti i round (1-4 archiviati, 5 avviato) | [`HISTORY.md`](./HISTORY.md) |
 | Materiali archiviati (sandbox, scoring, script storici) | [`_archive/round-1-to-4-2026-05-19-to-25/`](./_archive/round-1-to-4-2026-05-19-to-25/) |
 | Indice archivio (cosa c'è dentro, perché è stato superato) | [`_archive/round-1-to-4-2026-05-19-to-25/INDEX.md`](./_archive/round-1-to-4-2026-05-19-to-25/INDEX.md) |
 | Scoring locale (round 3+4) | `_archive/.../docs-historical/RESULTS-MANUAL-2026-05-25.md` |
@@ -84,10 +84,20 @@ Su Pi 0.75 va modificato `~/.pi/agent/models.json` rimuovendo `quantizations: ["
 
 ## Riproduzione di un singolo test
 
-> Gli script `run-*.sh` del round 5 (`run-local-2026-05-26.sh`, `run-cloud-2026-05-26.sh`) saranno scritti dopo lo smoke test della nuova metodologia. Per ora sotto trovi il pattern Pi minimal con `--append-system-prompt @docs/SPEC.md` da usare per uno smoke test manuale.
+Il batch locale del round 5 si lancia con l'orchestratore, che inietta `docs/SPEC.md` come system prompt addizionale in entrambe le modalità:
 
 ```bash
-# Smoke test locale (monolithic con SPEC iniettato)
+./scripts/run-local-2026-05-26.sh --dry-run   # elenca modelli e path, non lancia
+./scripts/run-local-2026-05-26.sh --smoke     # solo qwen3_coder_30b, mono + roadmap
+./scripts/run-local-2026-05-26.sh             # 4 modelli x 2 modalita', 60-90 min
+```
+
+Lo script cloud (`run-cloud-2026-05-26.sh`) non è ancora scritto: la fase cloud parte dopo lo scoring del batch locale.
+
+Le singole invocazioni, se vuoi riprodurre una cella a mano:
+
+```bash
+# Locale, monolithic con SPEC iniettato
 cd <sandbox-vuota>
 pi -p --provider mlx-local --model "<path-modello>" \
    --no-skills --no-extensions --no-prompt-templates --no-context-files \

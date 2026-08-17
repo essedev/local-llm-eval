@@ -212,6 +212,27 @@ Esempio Sonnet 4.6 Task 3: il modello ha letto correttamente `main.py` + `models
 
 ---
 
+## Round 5 - 2026-05-26: refit metodologico (in corso)
+
+**Motivazione**: nei round 1-4 la modalità roadmap riceveva istruzioni più specifiche per task, quindi più informazione totale, mentre la monolithic riceveva un prompt minimo. Ogni differenza misurata era un misto tra "decomposizione" e "qualità del brief".
+
+**Cambio di metodo**: entrambe le modalità ricevono lo stesso `docs/SPEC.md` come `--append-system-prompt`. Varia solo se il modello vede il compito in un singolo turn agentico o in 6 turn atomici con context fresco. Piano completo in `docs/PLAN.md`.
+
+**Orchestratore**: `scripts/run-local-2026-05-26.sh`, sequenziale, 4 modelli locali × 2 modalità.
+
+**Smoke test eseguito** (qwen3_coder_30b, entrambe le modalità, tutti i task exit 0):
+
+| Modalità | Wall clock | File generati |
+|---|---|---|
+| monolithic | 205s (3 min) | 13 |
+| roadmap (6 task) | 657s (10 min) | 35 |
+
+Lo smoke ha esposto due lacune dello SPEC, poi irrigidite: endpoint non registrati in `main.py` e manifest dei pacchetti scritti a mano con versioni inventate.
+
+**Non ancora fatto**: il batch sui 4 modelli locali, lo scoring, la fase cloud. I numeri del round 5 non esistono ancora, quindi le conclusioni pubblicate restano quelle dei round 3-4.
+
+---
+
 ## Stato attuale (2026-05-26)
 
 ### Cosa è completo e affidabile
