@@ -1,4 +1,4 @@
-# macbook-m5-agentic-coding-eval - istruzioni per l'agent
+# local-llm-eval - istruzioni per l'agent
 
 Repo di **esperimenti**, non di prodotto: qui dentro si producono misure e transcript, non software da mantenere. Il codice dentro le sandbox è generato dai modelli sotto test e **non va corretto**: i suoi difetti sono il dato.
 

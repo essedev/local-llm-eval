@@ -1,4 +1,4 @@
-# macbook-m5-agentic-coding-eval
+# local-llm-eval
 
 Esperimenti sul **coding agentico locale su MacBook Pro M5 32 GB**, con confronto contro modelli cloud via OpenRouter. Quattro round di test storici (19/05 → 26/05 2026, archiviati) più un round 5 in corso con metodologia ripulita. Task standard: `booktrack`, FastAPI + SQLite backend, React + Vite frontend, CRUD libri con status.
 
