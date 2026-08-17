@@ -58,3 +58,6 @@ uv.lock
 **/__pycache__/
 **/.vite/
 **/dist/
+
+# Prompt temporaneo generato da scripts/bench-prefill.sh
+throughput/.prefill-prompt.txt
