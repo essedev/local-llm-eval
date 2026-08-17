@@ -34,7 +34,21 @@ L'eliminazione di un libro non è funzionalità minima richiesta. Se la implemen
 
 - Il backend distingue errori applicativi (404 su id inesistente, 422 o 400 su body invalido).
 - Il frontend mostra all'utente almeno uno stato di caricamento e uno stato di errore quando una chiamata API fallisce.
-- Niente versioni inventate nei file di lock/manifest: usa i comandi ufficiali (`uv init`, `uv add`, `pnpm create vite`, `pnpm add`) per generare/aggiornare `pyproject.toml`/`package.json`. NON scrivere requirements.txt/package.json a mano.
+- Gli endpoint del backend devono essere registrati in `backend/main.py` (direttamente, o via `APIRouter` incluso con `app.include_router`). `main.py` non deve restare un placeholder vuoto: a fine task, una grep di `@app.` o `include_router` su `main.py` deve trovare le route richieste dallo SPEC.
+
+## Vincoli sui manifest dei pacchetti (regola HARD)
+
+Non scrivere mai a mano i file di manifest e di lock di Python e Node:
+
+- `pyproject.toml`, `uv.lock`, `requirements.txt`
+- `package.json`, `package-lock.json`, `pnpm-lock.yaml`, `yarn.lock`
+
+Devi ottenere e modificare questi file SOLO tramite i comandi ufficiali:
+
+- Python: `uv init <name>` per il bootstrap, `uv add <pkg>` / `uv remove <pkg>` per le dipendenze.
+- Node: `pnpm create vite <name> --template react` per il bootstrap, `pnpm add <pkg>` / `pnpm remove <pkg>` per le dipendenze.
+
+Le versioni delle dipendenze sono quelle che escono dai comandi ufficiali al momento dell'esecuzione: non inventare numeri di versione e non copiare versioni dalla tua memoria. Se non riesci a eseguire questi comandi (es. shell non disponibile, errore di rete), fermati e segnala il problema invece di scrivere il manifest a mano.
 
 ## Cosa è esplicitamente fuori scope
 
@@ -46,12 +60,12 @@ L'eliminazione di un libro non è funzionalità minima richiesta. Se la implemen
 
 ## Come è strutturata la repo (scaffold-based)
 
-L'organizzazione viene dai tool ufficiali. Quindi:
+Lavora nella cartella corrente (il cwd del processo). Crea due sottocartelle `backend/` e `frontend/` direttamente lì, NON dentro una sottocartella `booktrack/` intermedia.
 
 ```
-booktrack/
+<cwd>/
 ├── backend/        creato da `uv init backend`
 └── frontend/       creato da `pnpm create vite frontend --template react`
 ```
 
-Dentro `backend/` e `frontend/` la struttura viene da `uv` e da Vite. Non inventarne una alternativa, non duplicare cartelle (no `frontend/booktrack/` annidato, no `backend/frontend/` vuoto).
+Dentro `backend/` e `frontend/` la struttura viene da `uv` e da Vite: non inventarne una alternativa, non duplicare cartelle (no `frontend/booktrack/` annidato, no `backend/frontend/` vuoto), non spostare la radice del progetto in una sottocartella aggiuntiva.
